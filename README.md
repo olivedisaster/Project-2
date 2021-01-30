@@ -8,8 +8,6 @@ https://oregon.bootcampcontent.com/Oregon_Coding_Bootcamp/uofo-por-data-pt-09-20
 
 *HOW TO MAKE NEW BRANCH*
 https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
-
-  ***DO NOT PUSH UNTIL VERY END***
   
    - Make new branch every time you want to COMMIT amd PUSH changes
    - DELETE the old branch
