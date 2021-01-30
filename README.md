@@ -31,7 +31,7 @@ MongoDB
   
 **LESSONS TO EXPLORE**
   - UNIT 10 (
-    - JSON (6-7
+    - JSON (3- 6,7)
       - https://oregon.bootcampcontent.com/Oregon_Coding_Bootcamp/uofo-por-data-pt-09-2020-u-c/-/tree/master/10-Advanced-Data-Storage-and-Retrieval/3/Activities
     - Flask (3- 4,5,10,11)
       - https://oregon.bootcampcontent.com/Oregon_Coding_Bootcamp/uofo-por-data-pt-09-2020-u-c/-/tree/master/10-Advanced-Data-Storage-and-Retrieval/3/Activities
