@@ -30,15 +30,15 @@ MongoDB
   - Data needs to be in JSON, which interacts with MongoDB
   
 **LESSONS TO EXPLORE**
-  - UNIT 10 (
+  - UNIT 10
     - JSON (3- 6,7)
       - https://oregon.bootcampcontent.com/Oregon_Coding_Bootcamp/uofo-por-data-pt-09-2020-u-c/-/tree/master/10-Advanced-Data-Storage-and-Retrieval/3/Activities
     - Flask (3- 4,5,10,11)
       - https://oregon.bootcampcontent.com/Oregon_Coding_Bootcamp/uofo-por-data-pt-09-2020-u-c/-/tree/master/10-Advanced-Data-Storage-and-Retrieval/3/Activities
-  - UNIT 12 (Web Scraping & CRUD)
-    - MongoDB 
+  - UNIT 12 
+    - MongoDB (1- 1,2,3,4,5,6)
       - https://oregon.bootcampcontent.com/Oregon_Coding_Bootcamp/uofo-por-data-pt-09-2020-u-c/-/tree/master/12-Web-Scraping-and-Document-Databases/1/Activities
    
-    
+   
     
 
