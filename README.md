@@ -1,22 +1,23 @@
 # Project-2
 
 *PROJECT REQUIREMENTS & RUBRIC*
-https://oregon.bootcampcontent.com/Oregon_Coding_Bootcamp/uofo-por-data-pt-09-2020-u-c/-/tree/master/18-Project-2
+- https://oregon.bootcampcontent.com/Oregon_Coding_Bootcamp/uofo-por-data-pt-09-2020-u-c/-/tree/master/18-Project-2
 
 *HOW TO CLEAN CODE EXAMPLE*
-https://oregon.bootcampcontent.com/Oregon_Coding_Bootcamp/uofo-por-data-pt-09-2020-u-c/-/tree/master/17-Mapping-Web/3/Activities/critique
+- https://oregon.bootcampcontent.com/Oregon_Coding_Bootcamp/uofo-por-data-pt-09-2020-u-c/-/tree/master/17-Mapping-Web/3/Activities/critique
 
 *HOW TO MAKE NEW BRANCH*
-https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
+- https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
   
    - Make new branch every time you want to COMMIT amd PUSH changes
    - DELETE the old branch
     
 *PROJECT EXAMPLE*
-    https://github.com/jeffreymorganio/d3-twitter-geo-stream
+
+https://github.com/jeffreymorganio/d3-twitter-geo-stream
 
 *PROJECT 2 TOPIC*
-Social Media
+-Social Media
   - Comparing tweets where Biden and Trump were @'d
     - Look at different time frames
     - Look at frequency of @s
@@ -27,5 +28,17 @@ Social Media
  
 MongoDB
   - Data needs to be in JSON, which interacts with MongoDB
-
+  
+**LESSONS TO EXPLORE**
+  - UNIT 10 (
+    - JSON (6-7
+      - https://oregon.bootcampcontent.com/Oregon_Coding_Bootcamp/uofo-por-data-pt-09-2020-u-c/-/tree/master/10-Advanced-Data-Storage-and-Retrieval/3/Activities
+    - Flask (3- 4,5,10,11)
+      - https://oregon.bootcampcontent.com/Oregon_Coding_Bootcamp/uofo-por-data-pt-09-2020-u-c/-/tree/master/10-Advanced-Data-Storage-and-Retrieval/3/Activities
+  - UNIT 12 (Web Scraping & CRUD)
+    - MongoDB 
+      - https://oregon.bootcampcontent.com/Oregon_Coding_Bootcamp/uofo-por-data-pt-09-2020-u-c/-/tree/master/12-Web-Scraping-and-Document-Databases/1/Activities
+   
+    
+    
 
