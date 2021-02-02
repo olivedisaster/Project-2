@@ -38,6 +38,24 @@ MongoDB
   - UNIT 12 
     - MongoDB (1- 1,2,3,4,5,6)
       - https://oregon.bootcampcontent.com/Oregon_Coding_Bootcamp/uofo-por-data-pt-09-2020-u-c/-/tree/master/12-Web-Scraping-and-Document-Databases/1/Activities
+      
+    - ***MongoDB Commands***
+
+> show dbs
+
+> db
+
+> use “db name”
+
+> db.createCollection(“destinations”)
+
+> show dbs	
+
+> db
+
+> show collections
+
+>
    
    
     
