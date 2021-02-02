@@ -31,7 +31,7 @@ MongoDB
   
 **LESSONS TO EXPLORE**
   - UNIT 10
-    - JSON (3- 6,7,8) [N/A, 55:20-1:01:20, 1:01:21-]
+    - JSON (3- 6,7,8,9) [N/A, 55:20-1:01:20, 1:01:21-1:11:20, 1:12:10]
       - https://oregon.bootcampcontent.com/Oregon_Coding_Bootcamp/uofo-por-data-pt-09-2020-u-c/-/tree/master/10-Advanced-Data-Storage-and-Retrieval/3/Activities
     - Flask (3- 4,5,10,11)
       - https://oregon.bootcampcontent.com/Oregon_Coding_Bootcamp/uofo-por-data-pt-09-2020-u-c/-/tree/master/10-Advanced-Data-Storage-and-Retrieval/3/Activities
