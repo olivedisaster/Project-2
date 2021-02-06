@@ -37,27 +37,30 @@ def home():
     return render_template("index.html")
 
 # /tweets/<variable_name>
-@app.route("/tweets")
+@app.route("/biden")
 # change app name for mult routes
-def tweets2020():
+def biden2020():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
     # Query all pizza data
-    results = session.query(Counts.month, Counts.pizza).all()
+    results = session.query(Counts.hashtag).all()
 
     session.close()
 
     # Create a dictionary from row of data and append to a list of dictionaries
-    pizzas_eaten = []
-    for month, pizza in results:
-        pizza_dict = {}
-        pizza_dict["month"] = month
-        pizza_dict["pizza"] = str(pizza)
-        pizzas_eaten.append(pizza_dict)
+    biden_tweets = []
+    for hashtag, in results:
 
+        # if hashtag == "Biden":
+
+        biden_dict = {}
+        biden_dict["hashtag"] = hashtag
+        #     # pizza_dict["pizza"] = str(pizza)
+        biden_tweets.append(biden_dict)
+        
     # turn the list of dicts into an array of objects
-    return jsonify(pizzas_eaten)
+    return jsonify(biden_tweets)
 
 
 if __name__ == '__main__':
