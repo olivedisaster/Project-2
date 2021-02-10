@@ -2,6 +2,7 @@
 count_url ="/sentcounts" 
 state_url ="/statesent"
 time_url = "/timesent"
+
 // Sentiment Count Bar Chart
 d3.json(count_url).then(function(data) {
   console.log(data)
@@ -32,6 +33,7 @@ d3.json(count_url).then(function(data) {
 
   Plotly.newPlot("sentcount", data, layout);
 });
+
 // Sentiment by State Bar Chart
 d3.json(state_url).then(function(data) {
   console.log(data)
@@ -62,6 +64,7 @@ d3.json(state_url).then(function(data) {
 
   Plotly.newPlot("sentstate", data, layout);
 });
+
 // Sentiment by Time Line Chart
 d3.json(time_url).then(function(data) {
   console.log(data)

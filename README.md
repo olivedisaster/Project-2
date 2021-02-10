@@ -17,10 +17,6 @@ Data was written to a database with sql alchemy after being cleaned in pandas/ju
 General findings from sentiment analyis showed a trend of more positive sentiment toward Biden than Trump. While Trump did have higher quantity of related tweets, that increased activity was seen primarily in the negative sentiment category. 
 
 
-***Copy of original repository: https://github.com/olivedisaster/Project-2
-
-
-
 *PROJECT REQUIREMENTS & RUBRIC*
 - https://oregon.bootcampcontent.com/Oregon_Coding_Bootcamp/uofo-por-data-pt-09-2020-u-c/-/tree/master/18-Project-2
 
