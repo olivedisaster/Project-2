@@ -20,7 +20,8 @@ Base.prepare(engine, reflect=True)
 
 # Save reference to the table
 Counts = Base.classes.tweet_counts
-SentAvg = Base.classes.sent_avg
+StateAvg = Base.classes.state_avg
+TimeAvg = Base.classes.time_avg
 SentCount = Base.classes.sent_count
 
 #################################################
@@ -39,63 +40,53 @@ def home():
     return render_template("index.html")
 
 # /tweets/<variable_name>
-@app.route("/bidenavg")
+@app.route("/statesent")
 # change app name for mult routes
-def bidenavg():
+def statesent():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
     # Query all pizza data
-    results = session.query(SentAvg.city, SentAvg.lat, SentAvg.long, SentAvg.state_code, SentAvg.hashtag, SentAvg.Pol_Avg, SentAvg.analysis).all()
+    results = session.query(StateAvg.state_code, StateAvg.BidenAvg, StateAvg.TrumpAvg).all()
 
     session.close()
 
     # Create a dictionary from row of data and append to a list of dictionaries
-    biden_avg = []
-    for city, lat, long, state_code, hashtag, polarity, analysis in results:
+    state_avg = []
+    for state_code, BidenAvg, TrumpAvg in results:
 
-        if hashtag == "Biden":
-            biden_dict = {}
-            biden_dict["hashtag"] = hashtag
-            biden_dict["coordinates"] = [lat, long]
-            biden_dict["city"] = city
-            biden_dict["state_code"] = state_code
-            biden_dict["polarity"] = polarity
-            biden_dict["analysis"] = analysis
-
-            biden_avg.append(biden_dict)
+        state_dict = {}
+        state_dict["state_code"] = state_code
+        state_dict["BidenAvg"] = BidenAvg
+        state_dict["TrumpAvg"] = TrumpAvg
+        state_avg.append(state_dict)
         
     # turn the list of dicts into an array of objects
-    return jsonify(biden_avg)
+    return jsonify(state_avg)
 
-@app.route("/trumpavg")
+@app.route("/timesent")
 # change app name for mult routes
-def trumpavg():
+def timesent():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
     # Query all pizza data
-    results = session.query(SentAvg.city, SentAvg.lat, SentAvg.long, SentAvg.state_code, SentAvg.hashtag, SentAvg.Pol_Avg, SentAvg.analysis).all()
+    results = session.query(TimeAvg.Date, TimeAvg.BidenAvg, TimeAvg.TrumpAvg).all()
 
     session.close()
 
     # Create a dictionary from row of data and append to a list of dictionaries
-    trump_avg = []
-    for city, lat, long, state_code, hashtag, polarity, analysis in results:
+    time_avg = []
+    for Date, BidenAvg, TrumpAvg in results:
 
-        if hashtag == "Trump":
-            trump_dict = {}
-            trump_dict["hashtag"] = hashtag
-            trump_dict["coordinates"] = [lat, long]
-            trump_dict["city"] = city
-            trump_dict["state_code"] = state_code
-            trump_dict["polarity"] = polarity
-            trump_dict["analysis"] = analysis
-
-            trump_avg.append(trump_dict)
+        time_dict = {}
+        time_dict["date"] = Date
+        time_dict["BidenAvg"] = BidenAvg
+        time_dict["TrumpAvg"] = TrumpAvg
+        time_avg.append(time_dict)
         
     # turn the list of dicts into an array of objects
-    return jsonify(trump_avg)
+    return jsonify(time_avg)
 
 # /tweets/<variable_name>
 @app.route("/sentcounts")
