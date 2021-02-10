@@ -25,28 +25,28 @@
 // url = "http://127.0.0.1:5000/hashtag2020"
 
 // Create function to determine marker size based on magnitude
-// function markerSize(magnitude){
-//   // if (magnitude === 0){
-//   //     return 1;
-//   // }
-//   // else {
-//   return magnitude *5;
-//   // }
-// };
+function markerSize(magnitude){
+  // if (magnitude === 0){
+  //     return 1;
+  // }
+  // else {
+  return magnitude *5;
+  // }
+};
 
-// function markerColor(pol_avg){
-//   if (pol_avg > 0) {
-//       return 'blue';
-//   }
-//   else if (pol_avg < 0) {
-//       return 'red';
-//   }
-//   else {
-//       return 'white';
-//   }
-// };
+function markerColor(pol_avg){
+  if (pol_avg > 0) {
+      return 'blue';
+  }
+  else if (pol_avg < 0) {
+      return 'red';
+  }
+  else {
+      return 'white';
+  }
+};
 
-// // Function to add marker with style options
+// Function to add marker with style options
 // function addMarker (feature, location){
 //   var options = {
 //       stroke: true,
