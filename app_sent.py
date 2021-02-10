@@ -20,14 +20,13 @@ Base.prepare(engine, reflect=True)
 
 # Save reference to the table
 Counts = Base.classes.tweet_counts
+SentAvg = Base.classes.sent_avg
+SentCount = Base.classes.sent_count
 
 #################################################
 # Flask Setup
 #################################################
 app = Flask(__name__)
-
-# insp = inspect(engine)
-# print(insp.get_columns("tweet_counts"))
 
 
 #################################################
@@ -40,35 +39,116 @@ def home():
     return render_template("index.html")
 
 # /tweets/<variable_name>
-@app.route("/sentiment")
+@app.route("/bidenavg")
 # change app name for mult routes
-def sentiment():
+def bidenavg():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
     # Query all pizza data
-    results = session.query(Counts.lat, Counts.long, Counts.city, Counts.state_code, Counts.hashtag, Counts.polarity, Counts.analysis).all()
+    results = session.query(SentAvg.city, SentAvg.lat, SentAvg.long, SentAvg.state_code, SentAvg.hashtag, SentAvg.Pol_Avg, SentAvg.analysis).all()
 
     session.close()
 
     # Create a dictionary from row of data and append to a list of dictionaries
-    sent_tweets = []
-    for lat, long, city, state_code, hashtag, polarity, analysis in results:
+    biden_avg = []
+    for city, lat, long, state_code, hashtag, polarity, analysis in results:
 
-        # if hashtag == "Biden":
-        sent_dict = {}
-        sent_dict["hashtag"] = hashtag
-        sent_dict["coordinates"] = [lat, long]
-        sent_dict["city"] = city
-        sent_dict["state_code"] = state_code
-        sent_dict["polarity"] = polarity
-        sent_dict["analysis"] = analysis
+        if hashtag == "Biden":
+            biden_dict = {}
+            biden_dict["hashtag"] = hashtag
+            biden_dict["coordinates"] = [lat, long]
+            biden_dict["city"] = city
+            biden_dict["state_code"] = state_code
+            biden_dict["polarity"] = polarity
+            biden_dict["analysis"] = analysis
 
-        sent_tweets.append(sent_dict)
+            biden_avg.append(biden_dict)
         
     # turn the list of dicts into an array of objects
-    return jsonify(sent_tweets)
+    return jsonify(biden_avg)
 
+@app.route("/trumpavg")
+# change app name for mult routes
+def trumpavg():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+
+    # Query all pizza data
+    results = session.query(SentAvg.city, SentAvg.lat, SentAvg.long, SentAvg.state_code, SentAvg.hashtag, SentAvg.Pol_Avg, SentAvg.analysis).all()
+
+    session.close()
+
+    # Create a dictionary from row of data and append to a list of dictionaries
+    trump_avg = []
+    for city, lat, long, state_code, hashtag, polarity, analysis in results:
+
+        if hashtag == "Trump":
+            trump_dict = {}
+            trump_dict["hashtag"] = hashtag
+            trump_dict["coordinates"] = [lat, long]
+            trump_dict["city"] = city
+            trump_dict["state_code"] = state_code
+            trump_dict["polarity"] = polarity
+            trump_dict["analysis"] = analysis
+
+            trump_avg.append(trump_dict)
+        
+    # turn the list of dicts into an array of objects
+    return jsonify(trump_avg)
+
+# /tweets/<variable_name>
+@app.route("/bidencount")
+# change app name for mult routes
+def bidencount():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+
+    # Query all pizza data
+    results = session.query(SentCount.analysis, SentCount.hashtag, SentCount.count).all()
+
+    session.close()
+
+    # Create a dictionary from row of data and append to a list of dictionaries
+    biden_count = []
+    for analysis, hashtag, count in results:
+
+        if hashtag == "Biden":
+            bcount_dict = {}
+            bcount_dict["analysis"] = analysis
+            bcount_dict["hashtag"] = hashtag
+            bcount_dict["count"] = count
+
+            biden_count.append(bcount_dict)
+        
+    # turn the list of dicts into an array of objects
+    return jsonify(biden_count)
+
+@app.route("/trumpcount")
+# change app name for mult routes
+def trumpcount():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+
+    # Query all pizza data
+    results = session.query(SentCount.analysis, SentCount.hashtag, SentCount.count).all()
+
+    session.close()
+
+    # Create a dictionary from row of data and append to a list of dictionaries
+    trump_count = []
+    for analysis, hashtag, count in results:
+
+        if hashtag == "Trump":
+            tcount_dict = {}
+            tcount_dict["analysis"] = analysis
+            tcount_dict["hashtag"] = hashtag
+            tcount_dict["count"] = count
+
+            trump_count.append(tcount_dict)
+        
+    # turn the list of dicts into an array of objects
+    return jsonify(trump_count)
 
 if __name__ == '__main__':
     app.run(debug=True)
