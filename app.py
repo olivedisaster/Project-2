@@ -23,6 +23,7 @@ Counts = Base.classes.tweet_counts
 StateAvg = Base.classes.state_avg
 TimeAvg = Base.classes.time_avg
 SentCount = Base.classes.sent_count
+TimeTweets = Base.classes.time_tweets
 
 #################################################
 # Flask Setup
@@ -99,6 +100,34 @@ def sentcounts():
         sent_count.append(count_dict)
         
     return jsonify(sent_count)
+
+# Buckley's time app.route
+@app.route("/timetweets")
+# change app name for mult routes
+def time():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+
+    # Query all sentiment data
+    results = session.query(TimeTweets.created_at, TimeTweets.trump, TimeTweets.biden).all()
+
+    session.close()
+
+    # Create a dictionary from row of data and append to a list of dictionaries
+    time_tweets = []
+    for created_at, trump, biden in results:
+
+        # if hashtag == "Biden":
+        time_dict = {}
+        time_dict["created_at"] = created_at
+        time_dict["trump"] = trump
+        time_dict["biden"] = biden
+        
+
+        time_tweets.append(time_dict)
+        
+    # turn the list of dicts into an array of objects
+    return jsonify(time_tweets)
 
 
 if __name__ == '__main__':

@@ -94,3 +94,38 @@ d3.json(time_url).then(function(data) {
 
   Plotly.newPlot("senttime", data, layout);
 });
+
+// Time Analysis routes
+time_url ="/timetweets" 
+
+
+// Time Count Bar Chart
+d3.json(time_url).then(function(data) {
+  console.log(data)
+
+  var trace1 = {
+    x: data.map(row => row.created_at), 
+    y: data.map(row => row.biden),
+    name: 'Biden',
+    type: 'bar',
+    marker:{color:'blue'}
+  };
+
+  var trace2 = {
+    x: data.map(row => row.created_at), 
+    y: data.map(row => row.trump),
+    name: 'Trump',
+    type: 'bar',
+    marker:{color:'red'}
+  };
+
+  var data = [trace1, trace2];
+
+  var layout = {
+    title: "Biden & Trump Tweets Per 12 Hr Period",
+    xaxis: { title: "Day" },
+    yaxis: { title: "Count of Tweets"}
+  };
+
+  Plotly.newPlot("timetweets", data, layout);
+});
