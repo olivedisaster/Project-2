@@ -1,87 +1,93 @@
-// SVG wrapper dimensions are determined by the current width
-// and height of the browser window.
-var svgWidth = 1200;
-var svgHeight = 660;
+// Sentiment Analysis routes
+count_url ="/sentcounts" 
+state_url ="/statesent"
+time_url = "/timesent"
+// Sentiment Count Bar Chart
+d3.json(count_url).then(function(data) {
+  console.log(data)
 
-var margin = {
-  top: 50,
-  right: 50,
-  bottom: 50,
-  left: 50
-};
+  var trace1 = {
+    x: data.map(row => row.analysis), 
+    y: data.map(row => row.Biden_Count),
+    name: 'Biden',
+    type: 'bar',
+    marker:{color:'blue'}
+  };
 
-var height = svgHeight - margin.top - margin.bottom;
-var width = svgWidth - margin.left - margin.right;
+  var trace2 = {
+    x: data.map(row => row.analysis), 
+    y: data.map(row => row.Trump_Count),
+    name: 'Trump',
+    type: 'bar',
+    marker:{color:'red'}
+  };
 
-var svg = d3.select(".chart")
-  .append("svg")
-  .attr("height", svgHeight)
-  .attr("width", svgWidth);
+  var data = [trace1, trace2];
 
-var chartGroup = svg.append("g")
-  .attr("transform", `translate(${margin.left}, ${margin.top})`);
+  var layout = {
+    title: "Biden vs Trump Hashtag Tweet Sentiment",
+    xaxis: { title: "Sentiment Category" },
+    yaxis: { title: "Count of Tweets"}
+  };
 
-// either works!
-// url = "http://127.0.0.1:5000/hashtag2020"
-url = "/hashtag2020"
+  Plotly.newPlot("sentcount", data, layout);
+});
+// Sentiment by State Bar Chart
+d3.json(state_url).then(function(data) {
+  console.log(data)
 
-d3.json(url).then(function(data) {
-  console.log(data);
-  // var months = [];
-  // var pizzasEatenByMonth = [];
-  
-//   data.forEach(function(d) {
-//     d.pizza = +d.pizza;
-//   })
+  var trace1 = {
+    x: data.map(row => row.state_code), 
+    y: data.map(row => row.BidenAvg),
+    name: 'Biden',
+    type: 'bar',
+    marker:{color:'blue'}
+  };
 
-//   // scales
-//   var xScale = d3.scaleBand()
-//     .domain(data.map(d => d.month))
-//     .range([0, width]);
+  var trace2 = {
+    x: data.map(row => row.state_code), 
+    y: data.map(row => row.TrumpAvg),
+    name: 'Trump',
+    type: 'bar',
+    marker:{color:'red'}
+  };
 
-//   var yScale = d3.scaleLinear()
-//     .domain([0, d3.max(data.map(d => d.pizza))])
-//     .range([height, 0]);
+  var data = [trace1, trace2];
 
-//   // line generator
-//   var line = d3.line()
-//     .x(d => xScale(d.month))
-//     .y(d => yScale(d.pizza));
+  var layout = {
+    title: "Biden vs Trump Average Polarity by State",
+    xaxis: { title: "State" },
+    yaxis: { title: "Average Polarity Rating"}
+  };
 
-//   // create path
-//   chartGroup.append("path")
-//     .attr("d", line(data))
-//     .attr("fill", "none")
-//     .attr("stroke", "green");
+  Plotly.newPlot("sentstate", data, layout);
+});
+// Sentiment by Time Line Chart
+d3.json(time_url).then(function(data) {
+  console.log(data)
 
-//   // append circles to data points
-//   var circlesGroup = chartGroup.selectAll("circle")
-//     .data(data)
-//     .enter()
-//     .append("circle")
-//     .attr("r", "10")
-//     .attr("fill", "red");
+  var trace1 = {
+    x: data.map(row => row.date), 
+    y: data.map(row => row.BidenAvg),
+    name: 'Biden',
+    type: 'scatter',
+    marker:{color:'blue'}
+  };
 
-//   // Event listeners with transitions
-//   circlesGroup.on("mouseover", function() {
-//     d3.select(this)
-//       .transition()
-//       .duration(1000)
-//       .attr("r", 20)
-//       .attr("fill", "lightblue");
-//   })
-//     .on("mouseout", function() {
-//       d3.select(this)
-//         .transition()
-//         .duration(1000)
-//         .attr("r", 10)
-//         .attr("fill", "red");
-//     });
+  var trace2 = {
+    x: data.map(row => row.date), 
+    y: data.map(row => row.TrumpAvg),
+    name: 'Trump',
+    type: 'scatter',
+    marker:{color:'red'}
+  };
 
-//   // transition on page load
-//   chartGroup.selectAll("circle")
-//     .transition()
-//     .duration(2000)
-//     .attr("cx", d => xScale(d.month))
-//     .attr("cy", d => yScale(d.pizza));
-// })
+  var data = [trace1, trace2];
+
+  var layout = {
+    title: "Biden vs Trump Average Polarity by Date",
+    yaxis: { title: "Average Polarity Rating"}
+  };
+
+  Plotly.newPlot("senttime", data, layout);
+});
