@@ -98,57 +98,31 @@ def trumpavg():
     return jsonify(trump_avg)
 
 # /tweets/<variable_name>
-@app.route("/bidencount")
+@app.route("/sentcounts")
 # change app name for mult routes
-def bidencount():
+def sentcounts():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
     # Query all pizza data
-    results = session.query(SentCount.analysis, SentCount.hashtag, SentCount.count).all()
+    results = session.query(SentCount.analysis, SentCount.Biden_Count, SentCount.Trump_Count).all()
 
     session.close()
 
     # Create a dictionary from row of data and append to a list of dictionaries
-    biden_count = []
-    for analysis, hashtag, count in results:
+    sent_count = []
+    for analysis, Biden_Count, Trump_Count in results:
 
-        if hashtag == "Biden":
-            bcount_dict = {}
-            bcount_dict["analysis"] = analysis
-            bcount_dict["hashtag"] = hashtag
-            bcount_dict["count"] = count
+        count_dict = {}
+        count_dict["analysis"] = analysis
+        count_dict["Biden_Count"] = Biden_Count
+        count_dict["Trump_Count"] = Trump_Count
 
-            biden_count.append(bcount_dict)
+        sent_count.append(count_dict)
         
     # turn the list of dicts into an array of objects
-    return jsonify(biden_count)
+    return jsonify(sent_count)
 
-@app.route("/trumpcount")
-# change app name for mult routes
-def trumpcount():
-    # Create our session (link) from Python to the DB
-    session = Session(engine)
-
-    # Query all pizza data
-    results = session.query(SentCount.analysis, SentCount.hashtag, SentCount.count).all()
-
-    session.close()
-
-    # Create a dictionary from row of data and append to a list of dictionaries
-    trump_count = []
-    for analysis, hashtag, count in results:
-
-        if hashtag == "Trump":
-            tcount_dict = {}
-            tcount_dict["analysis"] = analysis
-            tcount_dict["hashtag"] = hashtag
-            tcount_dict["count"] = count
-
-            trump_count.append(tcount_dict)
-        
-    # turn the list of dicts into an array of objects
-    return jsonify(trump_count)
 
 if __name__ == '__main__':
     app.run(debug=True)

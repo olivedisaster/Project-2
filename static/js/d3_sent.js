@@ -1,50 +1,24 @@
-// // SVG wrapper dimensions are determined by the current width
-// // and height of the browser window.
-// var svgWidth = 1200;
-// var svgHeight = 660;
-
-// var margin = {
-//   top: 50,
-//   right: 50,
-//   bottom: 50,
-//   left: 50
+// // Create function to determine marker size based on magnitude
+// function markerSize(magnitude){
+//   // if (magnitude === 0){
+//   //     return 1;
+//   // }
+//   // else {
+//   return magnitude *5;
+//   // }
 // };
 
-// var height = svgHeight - margin.top - margin.bottom;
-// var width = svgWidth - margin.left - margin.right;
-
-// var svg = d3.select(".chart")
-//   .append("svg")
-//   .attr("height", svgHeight)
-//   .attr("width", svgWidth);
-
-// var chartGroup = svg.append("g")
-//   .attr("transform", `translate(${margin.left}, ${margin.top})`);
-
-// either works!
-// url = "http://127.0.0.1:5000/hashtag2020"
-
-// Create function to determine marker size based on magnitude
-function markerSize(magnitude){
-  // if (magnitude === 0){
-  //     return 1;
-  // }
-  // else {
-  return magnitude *5;
-  // }
-};
-
-function markerColor(pol_avg){
-  if (pol_avg > 0) {
-      return 'blue';
-  }
-  else if (pol_avg < 0) {
-      return 'red';
-  }
-  else {
-      return 'white';
-  }
-};
+// function markerColor(pol_avg){
+//   if (pol_avg > 0) {
+//       return 'blue';
+//   }
+//   else if (pol_avg < 0) {
+//       return 'red';
+//   }
+//   else {
+//       return 'white';
+//   }
+// };
 
 // Function to add marker with style options
 // function addMarker (feature, location){
@@ -58,24 +32,39 @@ function markerColor(pol_avg){
 //   }
 
 
-bavg_url = "/bidenavg"
-tavg_url = "/trumpavg"
-bcount_url ="/bidencount" 
-tcount_url = "/trumpcount"
+// bavg_url = "/bidenavg"
+// tavg_url = "/trumpavg"
+count_url ="/sentcounts" 
 
 
-d3.json(bavg_url).then(function(data) {
-  console.log(data);
-})
+d3.json(count_url).then(function(data) {
+  console.log(data)
 
-d3.json(tavg_url).then(function(data) {
-  console.log(data);
-})
+  var trace1 = {
+    x: data.map(row => row.analysis), 
+    y: data.map(row => row.Biden_Count),
+    name: 'Biden',
+    type: 'bar',
+    marker:{color:'blue'}
+  };
 
-d3.json(bcount_url).then(function(data) {
-  console.log(data);
-})
+  var trace2 = {
+    x: data.map(row => row.analysis), 
+    y: data.map(row => row.Trump_Count),
+    name: 'Trump',
+    type: 'bar',
+    marker:{color:'red'}
+  };
 
-d3.json(tcount_url).then(function(data) {
-  console.log(data);
-})
+  var data = [trace1, trace2];
+
+  var layout = {
+    title: "Biden vs Trump Hashtag Tweet Sentiment",
+    xaxis: { title: "Sentiment Category" },
+    yaxis: { title: "Count of Tweets"}
+  };
+
+  Plotly.newPlot("sentcount", data, layout);
+});
+
+
