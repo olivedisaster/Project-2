@@ -12,7 +12,7 @@ To do this, we reviewed twitter data from the few weeks prior and up to the 2020
 Data was sourced from dataset posted at :https://www.kaggle.com/manchunhui/us-election-2020-tweets
 by user Manch Hui.
 
-Data was written to a database with sql alchemy after being cleaned in pandas/jupyter notebook. Run file write_data.ipynb to clean data and pass to database. Several steps were performed to prepare tables for the database, including sentiment analysis. Data was passed through flask app routes (file app.py) to the user front-end html (index.html). Graphs are created with Plotly.js (file d3.js). 
+Data was written to a database with sql alchemy after being cleaned in pandas/jupyter notebook. Run file write_data.ipynb to clean data and pass to database. Several steps were performed to prepare tables for the database, including sentiment analysis. Due to the size of the original dataset (approx 2 million tweets), we only reviewed those with a location within the United States. Additionally, there were approx 240600 tweets that used both Biden and Trump tweets. To avoid those counting to one candidate and not the other, all duplicates were removed. That left us with a dataset of approx 142,000 tweets. After cleanup and preparation of dataframes, the data was passed through flask app routes (file app.py) to the user front-end html (index.html). Graphs are created with Plotly.js (file d3.js). 
 
 General findings from sentiment analyis showed a trend of more positive sentiment toward Biden than Trump. While Trump did have higher quantity of related tweets, that increased activity was seen primarily in the negative sentiment category. 
 
