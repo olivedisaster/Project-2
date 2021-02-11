@@ -121,7 +121,7 @@ d3.json(time_url).then(function(data) {
 tweet_url ="/timetweets" 
 
 
-// Time Count Bar Chart
+// Time Count Line Chart
 d3.json(tweet_url).then(function(data) {
   console.log(data)
 
@@ -145,9 +145,48 @@ d3.json(tweet_url).then(function(data) {
 
   var layout = {
     title: "Biden & Trump Tweets Per 12 Hr Period",
-    xaxis: { title: "Day" },
-    yaxis: { title: "Count of Tweets"}
+    xaxis: { title: "Day",
+      rangeselector: selectorOptions,
+      rangeslider:{} 
+    },
+    yaxis: { title: "Tweets Count",
+      fixedrange: true}
   };
 
   Plotly.newPlot("timetweets", data, layout);
+});
+
+// Time Analysis routes
+st_url ="/sttweets" 
+
+
+// Time Count Bar Chart
+d3.json(st_url).then(function(data) {
+  console.log(data)
+
+  var trace1 = {
+    x: data.map(row => row.state_code), 
+    y: data.map(row => row.biden),
+    name: 'Biden',
+    type: 'bar',
+    marker:{color:'blue'}
+  };
+
+  var trace2 = {
+    x: data.map(row => row.state_code, 
+    y: data.map(row => row.trump),
+    name: 'Trump',
+    type: 'bar',
+    marker:{color:'red'}
+  };
+
+  var data = [trace1, trace2];
+
+  var layout = {
+    title: "Biden & Trump Tweets Per State",
+    xaxis: { title: "State" },
+    yaxis: { title: "Tweets Count"}
+  };
+
+  Plotly.newPlot("sttweets", data, layout);
 });

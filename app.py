@@ -129,6 +129,33 @@ def timetweets():
     # turn the list of dicts into an array of objects
     return jsonify(time_tweets)
 
+@app.route("/sttweets")
+# change app name for mult routes
+def sttweets():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+
+    # Query all sentiment data
+    results = session.query(TimeTweets.state_code, TimeTweets.trump, TimeTweets.biden).all()
+
+    session.close()
+
+    # Create a dictionary from row of data and append to a list of dictionaries
+    st_tweets = []
+    for state_code, trump, biden in results:
+
+        # state code
+        time_dict = {}
+        time_dict["state_code"] = state_code
+        time_dict["trump"] = trump
+        time_dict["biden"] = biden
+        
+
+        time_tweets.append(time_dict)
+        
+    # turn the list of dicts into an array of objects
+    return jsonify(time_tweets)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
