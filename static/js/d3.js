@@ -173,7 +173,7 @@ d3.json(st_url).then(function(data) {
   };
 
   var trace2 = {
-    x: data.map(row => row.state_code, 
+    x: data.map(row => row.state_code), 
     y: data.map(row => row.trump),
     name: 'Trump',
     type: 'bar',
