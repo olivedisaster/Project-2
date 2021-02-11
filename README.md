@@ -1,5 +1,10 @@
 # Project-2
 
+***For Buckley's Code***
+
+- Please run the first 11 cells, and then scroll down to Buckley's Code and begin running from there.
+
+
 *PROJECT TOPIC*
 The goal for this project was to determine if the political landscape of twitter can be analysed for marketing insights. Assuming the role of marketing analysts for either a campaign office or politically leaning business, we wanted to see if we could gain useful insights from twitter, such as:
 
@@ -74,8 +79,7 @@ MongoDB
 
 >
 
-***For Buckley's Code***
-Please run the first 11 cells, and then scroll down to Buckley's Code and begin running from there.
+
    
    
     
