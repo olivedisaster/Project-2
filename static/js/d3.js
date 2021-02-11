@@ -96,11 +96,11 @@ d3.json(time_url).then(function(data) {
 });
 
 // Time Analysis routes
-time_url ="/timetweets" 
+tweet_url ="/timetweets" 
 
 
 // Time Count Bar Chart
-d3.json(time_url).then(function(data) {
+d3.json(tweet_url).then(function(data) {
   console.log(data)
 
   var trace1 = {
