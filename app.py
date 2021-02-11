@@ -24,6 +24,7 @@ StateAvg = Base.classes.state_avg
 TimeAvg = Base.classes.time_avg
 SentCount = Base.classes.sent_count
 TimeTweets = Base.classes.time_tweets
+StTweets = Base.classes.st_tweets
 
 #################################################
 # Flask Setup
@@ -136,7 +137,7 @@ def sttweets():
     session = Session(engine)
 
     # Query all sentiment data
-    results = session.query(TimeTweets.state_code, TimeTweets.trump, TimeTweets.biden).all()
+    results = session.query(StTweets.state_code, StTweets.trump, StTweets.biden).all()
 
     session.close()
 
@@ -151,10 +152,10 @@ def sttweets():
         time_dict["biden"] = biden
         
 
-        time_tweets.append(time_dict)
+        st_tweets.append(time_dict)
         
     # turn the list of dicts into an array of objects
-    return jsonify(time_tweets)
+    return jsonify(st_tweets)
 
 
 if __name__ == '__main__':
