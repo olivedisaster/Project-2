@@ -104,7 +104,7 @@ def sentcounts():
 # Buckley's time app.route
 @app.route("/timetweets")
 # change app name for mult routes
-def time():
+def timetweets():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
