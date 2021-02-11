@@ -3,6 +3,22 @@ count_url ="/sentcounts"
 state_url ="/statesent"
 time_url = "/timesent"
 
+var selectorOptions = {
+  buttons: [{
+      step: 'day',
+      stepmode: 'backward',
+      count: 1,
+      label: '1 Day'
+  }, {
+      step: 'week',
+      stepmode: 'backward',
+      count: 7,
+      label: '1 Week'
+  }, {
+      step: 'all',
+  }],
+};
+
 // Sentiment Count Bar Chart
 d3.json(count_url).then(function(data) {
   console.log(data)
@@ -28,7 +44,7 @@ d3.json(count_url).then(function(data) {
   var layout = {
     title: "Biden vs Trump Hashtag Tweet Sentiment",
     xaxis: { title: "Sentiment Category" },
-    yaxis: { title: "Count of Tweets"}
+    yaxis: { title: "Count of Tweets" }
   };
 
   Plotly.newPlot("sentcount", data, layout);
@@ -86,10 +102,16 @@ d3.json(time_url).then(function(data) {
   };
 
   var data = [trace1, trace2];
-
+  
   var layout = {
     title: "Biden vs Trump Average Polarity by Date",
-    yaxis: { title: "Average Polarity Rating"}
+    xaxis: { title: "Date", 
+      rangeselector: selectorOptions,
+      rangeslider:{}
+    },
+    yaxis: { title: "Average Polarity Rating",
+      fixedrange: true
+    }
   };
 
   Plotly.newPlot("senttime", data, layout);
