@@ -129,7 +129,7 @@ d3.json(tweet_url).then(function(data) {
     x: data.map(row => row.created_at), 
     y: data.map(row => row.biden),
     name: 'Biden',
-    type: 'bar',
+    type: 'scatter',
     marker:{color:'blue'}
   };
 
@@ -137,7 +137,7 @@ d3.json(tweet_url).then(function(data) {
     x: data.map(row => row.created_at), 
     y: data.map(row => row.trump),
     name: 'Trump',
-    type: 'bar',
+    type: 'scatter',
     marker:{color:'red'}
   };
 

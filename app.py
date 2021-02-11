@@ -146,13 +146,13 @@ def sttweets():
     for state_code, trump, biden in results:
 
         # state code
-        time_dict = {}
-        time_dict["state_code"] = state_code
-        time_dict["trump"] = trump
-        time_dict["biden"] = biden
+        st_dict = {}
+        st_dict["state_code"] = state_code
+        st_dict["trump"] = trump
+        st_dict["biden"] = biden
         
 
-        st_tweets.append(time_dict)
+        st_tweets.append(st_dict)
         
     # turn the list of dicts into an array of objects
     return jsonify(st_tweets)
